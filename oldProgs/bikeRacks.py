@@ -17,6 +17,6 @@ def solution(A):
     return maxDiff / 2
 
 
-A = [5,5]
+A = [10, 0, 8, 2, -1, 12, 11, 3]
 
-print solution(A)
+print(solution(A))
