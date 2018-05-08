@@ -15,6 +15,9 @@ def arrayToBT(arr, i=0):
     if i > len(arr) - 1:
         return None
     
+    if arr[i] == None:
+        return None
+    
     head = TreeNode(arr[i])
     head.left = arrayToBT(arr, 2 * i + 1)
     head.right = arrayToBT(arr, 2 * i + 2)
@@ -89,10 +92,55 @@ def BFS(root, key):
     
     return False
 
+def depthOrderTraversal(root):
+    
+    stack = [root]
+    
+    while len(stack) > 0:
+        
+        node = stack.pop()
+        print(node.val, end=" ")
+        
+        if node.right != None:
+            stack.append(node.right)
+        
+        if node.left != None:
+            stack.append(node.left)
+    
+    return
+
+def depthOrderTraversal_rec(root):
+    
+    if root == None:
+        return
+    
+    print(root.val, end=" ")
+    
+    depthOrderTraversal(root.left)
+    depthOrderTraversal(root.right)
+    
+def DFS(root, key):
+    
+    stack = [root]
+    
+    while len(stack) > 0:
+        node = stack.pop()
+        
+        if node.val == key:
+            return True
+        
+        if node.left != None:
+            stack.append(node.left)
+        
+        if node.right != None:
+            stack.append(node.right)
+                
+    return False
+
 
 # A = [1, 2, 3, 4, 5, 6, 6]
 # tree = arrayToBT(A, 0)
-# print(BFS(tree, 1))
+# print(DFS(tree, 7))
 
     
 

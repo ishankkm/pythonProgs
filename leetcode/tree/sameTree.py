@@ -27,6 +27,6 @@ def isSameTree(p, q):
 
 
 P = bt.arrayToBT([1,2,3])
-Q = bt.arrayToBT([1,2,3,1])
+Q = bt.arrayToBT([1,2,3])
 
 print(isSameTree(P, Q))

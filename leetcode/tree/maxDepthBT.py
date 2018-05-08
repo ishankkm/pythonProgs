@@ -18,6 +18,9 @@ def arrayToBT(arr, i=0):
     if i > len(arr) - 1:
         return None
     
+    if arr[i] == None:
+        return None
+    
     head = TreeNode(arr[i])
     head.left = arrayToBT(arr, 2 * i + 1)
     head.right = arrayToBT(arr, 2 * i + 2)
