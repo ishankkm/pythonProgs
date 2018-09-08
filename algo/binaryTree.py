@@ -9,7 +9,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
-    
+# Covert array format to tree format    
 def arrayToBT(arr, i=0):
     
     if i > len(arr) - 1:

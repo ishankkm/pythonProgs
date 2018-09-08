@@ -1,0 +1,43 @@
+# Complete the latestStudent function below.
+def latestStudent(attendanceData):
+    
+    if not attendanceData: return ""    
+    if len(attendanceData) < 1: return ""
+    
+    lateness = {}
+    person_lateness = {}
+    
+    for data in attendanceData:
+        date_lateness = lateness.get(data[0], [])
+        date_lateness.append(tuple( ( data[1], max(0, int(data[3]) - int(data[2]) ) )) )
+        lateness[data[0]] = date_lateness
+        
+    lateness_avg = {}
+        
+    for day in lateness:
+        sum_late_day = 0
+        for late_day in lateness[day]:
+            sum_late_day += late_day[1]
+        lateness_avg[day] = sum_late_day / len(lateness[day])
+        
+    max_late_student = ""
+    max_lateness = 0
+    
+    for day in lateness:
+        date_lateness = lateness[day]
+        avg_lateness = lateness_avg[day]
+                
+        for day_late in date_lateness:   
+            day_lateness = max(0, day_late[1] - avg_lateness)
+            person_data = person_lateness.get(day_late[0], 0)
+            person_data += day_lateness
+            person_lateness[day_late[0]] = person_data            
+            
+    for person, late in person_lateness.items():
+        if late > max_lateness:
+            max_late_student = person
+            max_lateness = late
+        elif late == max_lateness:
+            max_late_student = person if person < max_late_student else max_late_student         
+                
+    return max_late_student
